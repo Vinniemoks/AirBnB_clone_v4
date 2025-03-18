@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """app.py to connect to API"""
 import os
 from models import storage
