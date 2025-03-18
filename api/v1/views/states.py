@@ -49,28 +49,6 @@ def post_state():
     state.save()
     return make_response(jsonify(state.to_dict()), 201)
 
-@app_views.route('/api/v1/states/', methods=['POST'])
-def create_state():
-    # Check Content-Type header
-    if request.headers.get('Content-Type') != 'application/json':
-        return jsonify({"error": "Unsupported Media Type"}), 415
-
-    # Parse JSON payload
-    try:
-        data = request.get_json()
-    except:
-        return jsonify({"error": "Invalid JSON"}), 400
-
-    # Validate payload
-    if not data or 'name' not in data or 'population' not in data:
-        return jsonify({"error": "Missing required fields"}), 400
-
-    # Process the request
-    return jsonify({"message": "State created"}), 201
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
 
 @app_views.route('/states/<string:state_id>', methods=['PUT'],
                  strict_slashes=False)
